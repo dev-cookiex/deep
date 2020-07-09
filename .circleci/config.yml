@@ -7,12 +7,17 @@ aliases:
 
 jobs:
   setup:
-    - checkout
-    - run:
-        name: NodeJs Version
-        command: node --version
-    - *run_yarn
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: NodeJs Version
+          command: node --version
+      - *run_yarn
   lint:
+    executor:
+      name: node/default
     steps:
       - checkout
       - *run_yarn
@@ -20,6 +25,8 @@ jobs:
           name: Linter
           command: yarn lint
   test:
+    executor:
+      name: node/default
     steps:
       - checkout
       - *run_yarn
