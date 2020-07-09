@@ -5,8 +5,8 @@ aliases:
       name: Install Packages
       command: yarn --frozen-lockfile
 orbs:
-  node: 'circleci/node:x.y.z'
-version: 3.0.1
+  node: 'circleci/node:x.y'
+
 jobs:
   setup:
     executor:
