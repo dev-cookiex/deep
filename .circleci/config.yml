@@ -3,17 +3,23 @@ aliases:
   - &run_yarn
     run:
       name: Install Packages
-      command: yarn --frozen-lockfile
+      command: yarn
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@3.0.1
+
 jobs:
   setup:
-    - checkout
-    - run:
-        name: NodeJs Version
-        command: node --version
-    - *run_yarn
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: NodeJs Version
+          command: node --version
+      - *run_yarn
   lint:
+    executor:
+      name: node/default
     steps:
       - checkout
       - *run_yarn
@@ -21,6 +27,8 @@ jobs:
           name: Linter
           command: yarn lint
   test:
+    executor:
+      name: node/default
     steps:
       - checkout
       - *run_yarn
