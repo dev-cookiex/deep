@@ -1,18 +1,40 @@
 version: 2.1
+aliases:
+  - &run_yarn
+    run:
+      name: Install Packages
+      command: yarn --frozen-lockfile
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  setup:
+    - checkout
+    - run:
+        name: NodeJs Version
+        command: node --version
+    - *run_yarn
+  lint:
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm run lint
-            - run: npm install
-            - run: npm test
+      - *run_yarn
+      - run:
+          name: Linter
+          command: yarn lint
+  test:
+    steps:
+      - checkout
+      - *run_yarn
+      - run:
+          name: Run Unity Tests
+          command: yarn test
+
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  stable:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
