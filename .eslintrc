@@ -1,0 +1,7 @@
+{
+  "extends": "@cookiex",
+  "rules": {
+    "max-params": [ "warn", 4 ]
+  },
+  "ignorePatterns": "dist/**"
+}
