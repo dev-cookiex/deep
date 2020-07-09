@@ -3,7 +3,7 @@ aliases:
   - &run_yarn
     run:
       name: Install Packages
-      command: yarn --frozen-lockfile
+      command: yarn
 orbs:
   node: circleci/node@3.0.1
 
