@@ -3,10 +3,8 @@
 
 Deep is a library for joining object into one using immutability.
 
-----------
-
 ## Install
-
+---
 ```
 yarn add @cookiex/deep
 ```
@@ -15,9 +13,8 @@ or
 npm install --save @cookiex/deep
 ```
 
-----------
-
 ## Usage
+---
 
 ### Easy merge objects.
 
@@ -117,3 +114,7 @@ const merger = deep.mergerBuilder( mergerBuilderFunction )
 merger( { a: 1, b: 2, c: { d: 3 } } )
 // => { a: null, b: null, c: null }
 ```
+
+## License
+---
+CookieX Deep is MIT licensed, as found in the [LICENSE](https://github.com/dev-cookiex/deep/blob/master/LICENSE) file
